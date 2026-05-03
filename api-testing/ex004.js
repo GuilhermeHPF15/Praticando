@@ -1,7 +1,3 @@
-/* "Efetue uma requisição a um endpoint de uma API passando um parâmetro de ID inexistente. De seguida, 
-valide as propriedades status e ok do objeto de resposta (Response) para analisar o comportamento do fluxo 
-assíncrono." */
-
 const url = "https://jsonplaceholder.typicode.com/todos";
 
 async function callAPI() {
