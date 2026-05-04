@@ -3,7 +3,7 @@ extraia o conteúdo JSON e formate uma mensagem de saída no console que combine
 do objeto (ex: ID e Título), garantindo que a execução seja interrompida e tratada adequadamente em 
 caso de falha no endpoint. */
 
-const url = "https://jsonplaceholder.typicode.com/todos/0";
+const url = "https://jsonplaceholder.typicode.com/todos/1";
 
 async function callAPI() {
     try {
