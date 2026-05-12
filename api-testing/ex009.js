@@ -15,9 +15,7 @@ async function callAPI() {
         const response = await fetch(url, {
             method: "POST",
             body: JSON.stringify(object),
-            headers: {
-                "Content-Type": "application/json; charset=UTF-8"
-            }
+            headers: {"Content-Type": "application/json; charset=UTF-8"}
         });
         if (!response.ok) {
             throw new Error("Recurso não encontrado!");

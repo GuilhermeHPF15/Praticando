@@ -4,7 +4,7 @@ estágio de encadeamento e exibir o resultado final no console. Implemente tamb�
 exceções global utilizando o método .catch. */
 
 const url = "https://jsonplaceholder.typicode.com/todos/1";
-fetch (url)
+fetch(url)
     .then(response => {
         if (!response.ok) {
             throw new Error("Recurso não encontrado!");
