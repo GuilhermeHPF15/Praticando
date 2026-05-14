@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FirstSteps from "./components/FirstSteps";
 import ObjectsAndArraysStates from "./components/ObjectsAndArraysStates";
 import PropsTest from "./components/PropsTest"
@@ -7,6 +7,18 @@ import PropsTest from "./components/PropsTest"
 function App() {
   const user4 = "Gelson";
   const [activeUser, setActiveUser] = useState("Nenhum");
+
+  useEffect(() => {
+    document.title = activeUser;
+    console.log("Efeito ativado.");
+  }, [activeUser])
+  /* O hook useEffect conta com dois argumentos: uma função de código e um array de dependências.
+  O side effect terá um dentre três comportamentos distintos dependendo desse array:
+  - Sem array: Roda em toda re-renderização (raramente usado, já que vai contra o objetivo 
+  principal dos efeitos secundários).
+  - Array vazio: Roda apenas uma vez, na montagem do componente.
+  - Array com variáveis [estado]: Roda quando o componente nasce e sempre que essa variável
+  expecífica é atualizada. */
 
   return (
     <>
