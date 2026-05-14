@@ -1,12 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import FirstSteps from "./components/FirstSteps";
 import ObjectsAndArraysStates from "./components/ObjectsAndArraysStates";
 import PropsTest from "./components/PropsTest"
+
+export const ContextTheme = createContext(); //Named export. Pode ter quantos quiser.
 
 //Função, retorno e exportação. São os 3 elementos essenciais de um componente React.
 function App() {
   const user4 = "Gelson";
   const [activeUser, setActiveUser] = useState("Nenhum");
+  const globalTheme = "Escuro"; /* Para o useContext */
 
   useEffect(() => {
     document.title = activeUser;
@@ -21,20 +24,25 @@ function App() {
   expecífica é atualizada. */
 
   return (
-    <>
-      <FirstSteps />
-      <ObjectsAndArraysStates />
-      {/*Use aspas para passar props de string estática*/}
-      {/*Use chaves pra passar qualquer propriedade que não seja uma string estática*/}
+    <ContextTheme.Provider value={globalTheme}> {/* Somente componentes dentro dessa tag pai
+      poderão usar o contexto. Para usar mais contextos, aninhe eles. Se forem muitos, crie
+      uma pasta separada de contextos e exporte via função. Pesquise mais sobre isso quando for
+      necessário. */}
+      <>
+        <FirstSteps />
+        <ObjectsAndArraysStates />
+        {/*Use aspas para passar props de string estática*/}
+        {/*Use chaves pra passar qualquer propriedade que não seja uma string estática*/}
 
-      {/*Passando função como prop (setActiveUser é uma função)*/}
-      <PropsTest name="Guilherme" isAdmin={false} onSelect={setActiveUser}/> 
-      <PropsTest name="Abel" isAdmin={true} onSelect={setActiveUser}/>
-      <PropsTest name="Evandro" isAdmin={false} onSelect={setActiveUser}/>
-      <PropsTest name={user4} isAdmin={false} onSelect={setActiveUser}/> 
-      <h2>Usuário ativo: {activeUser}</h2>
-    </>
+        {/*Passando função como prop (setActiveUser é uma função)*/}
+        <PropsTest name="Guilherme" isAdmin={false} onSelect={setActiveUser}/> 
+        <PropsTest name="Abel" isAdmin={true} onSelect={setActiveUser}/>
+        <PropsTest name="Evandro" isAdmin={false} onSelect={setActiveUser}/>
+        <PropsTest name={user4} isAdmin={false} onSelect={setActiveUser}/> 
+        <h2>Usuário ativo: {activeUser}</h2>
+      </>
+    </ContextTheme.Provider>
   );
 }
 
-export default App
+export default App //Apenas um export default por arquivo.
