@@ -10,7 +10,7 @@ const name = "Guilherme";
   //Hooks precisam estar no nível mais alto da função, nunca dentro de condicionais, loops ou funções aninhadas.
 
   function increase() {
-      setCount(count + 1);
+    setCount(count + 1);
   }
 
   const [inputName, setInput] = useState("");
