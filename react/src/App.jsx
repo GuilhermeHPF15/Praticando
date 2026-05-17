@@ -1,47 +1,25 @@
-import { useState, useEffect, createContext } from "react";
-import FirstSteps from "./components/FirstSteps";
-import ObjectsAndArraysStates from "./components/ObjectsAndArraysStates";
-import PropsTest from "./components/PropsTest"
+import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home"
+import About from "./pages/About"
+import Users from "./pages/Users"
 
-export const ContextTheme = createContext(); //Named export. Pode ter quantos quiser.
-
-//Função, retorno e exportação. São os 3 elementos essenciais de um componente React.
 function App() {
-  const user4 = "Gelson";
-  const [activeUser, setActiveUser] = useState("Nenhum");
-  const globalTheme = "Escuro"; /* Para o useContext */
-
-  useEffect(() => {
-    document.title = activeUser;
-    console.log("Efeito ativado.");
-  }, [activeUser])
-  /* O hook useEffect conta com dois argumentos: uma função de código e um array de dependências.
-  O side effect terá um dentre três comportamentos distintos dependendo desse array:
-  - Sem array: Roda em toda re-renderização (raramente usado, já que vai contra o objetivo 
-  principal dos efeitos secundários).
-  - Array vazio: Roda apenas uma vez, na montagem do componente.
-  - Array com variáveis [estado]: Roda quando o componente nasce e sempre que essa variável
-  expecífica é atualizada. */
 
   return (
-    <ContextTheme.Provider value={globalTheme}> {/* Somente componentes dentro dessa tag pai
-      poderão usar o contexto. Para usar mais contextos, aninhe eles. Se forem muitos, crie
-      uma pasta separada de contextos e exporte via função. Pesquise mais sobre isso quando for
-      necessário. */}
-      <>
-        <FirstSteps />
-        <ObjectsAndArraysStates />
-        {/*Use aspas para passar props de string estática*/}
-        {/*Use chaves pra passar qualquer propriedade que não seja uma string estática*/}
-
-        {/*Passando função como prop (setActiveUser é uma função)*/}
-        <PropsTest name="Guilherme" isAdmin={false} onSelect={setActiveUser}/> 
-        <PropsTest name="Abel" isAdmin={true} onSelect={setActiveUser}/>
-        <PropsTest name="Evandro" isAdmin={false} onSelect={setActiveUser}/>
-        <PropsTest name={user4} isAdmin={false} onSelect={setActiveUser}/> 
-        <h2>Usuário ativo: {activeUser}</h2>
-      </>
-    </ContextTheme.Provider>
+    <BrowserRouter>
+    {/* Aqui, entre <BrowserRouter> e <Routes>, o conteúdo é exibido em todas as páginas,
+    então abaixo temos um cabeçalho fixo. */}
+    <Link to="/" style={{ paddingRight: "15px" }}>Início</Link>
+    <Link to="/sobre">Sobre</Link> 
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/sobre" element={<About />} />
+        <Route path="*" element={<h2>Página não encontrada!</h2>} /> {/*Rota curinga pra 
+        casos de erro 404, coloque na última linha do bloco. */}
+        <Route path="/users" element={<h1>Usuários</h1>} /> 
+        <Route path="/users/:user" element={<Users />} /> 
+      </Routes>
+    </BrowserRouter>
   );
 }
 

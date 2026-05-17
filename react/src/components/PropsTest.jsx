@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ContextTheme } from "../App";
+import { ContextTheme } from "../pages/Home";
 
 function PropsTest(props) {
   const theme = useContext(ContextTheme);
