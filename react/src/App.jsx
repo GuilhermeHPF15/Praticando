@@ -3,7 +3,7 @@ import Home from "./pages/Home"
 import About from "./pages/About"
 import Users from "./pages/Users"
 
-function App() {
+export default function App() { //Apenas um export default por arquivo.
 
   return (
     <BrowserRouter>
@@ -22,5 +22,3 @@ function App() {
     </BrowserRouter>
   );
 }
-
-export default App //Apenas um export default por arquivo.

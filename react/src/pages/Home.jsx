@@ -6,7 +6,7 @@ import PropsTest from "../components/PropsTest"
 export const ContextTheme = createContext(); //Named export. Pode ter quantos quiser.
 
 //Função, retorno e exportação. São os 3 elementos essenciais de um componente React.
-function Home() {
+export default function Home() {
   const user4 = "Gelson";
   const [activeUser, setActiveUser] = useState("Nenhum");
   const globalTheme = "Escuro"; /* Para o useContext */
@@ -41,5 +41,3 @@ function Home() {
     </ContextTheme.Provider>
   );
 }
-
-export default Home;
